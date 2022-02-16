@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="body">
+        <h2 class="text-center mb-2 p-3">Sign up</h2>
+        <form #f="ngForm" (ngSubmit)="signup(f)">
+            <div class="input">
+                <input ngModel #name="ngModel" name="name" type="text" class="form-control mb-2" placeholder="your name"
+                    required>
+                <div class="alert alert-danger" *ngIf="name.invalid && name.touched">Name Is required</div>
+            </div>
+
+            <div class="input">
+                <input ngModel name="email" #email="ngModel" type="email" class="form-control mb-2" placeholder="Email"
+                    required email>
+                <div class="alert alert-danger" *ngIf="email.touched && email.errors?.['required']">
+                    email Is required</div>
+                <div class="alert alert-danger" *ngIf="email.touched && email.errors?.['email']">
+                    your input doesn't match email format</div>
+                <div class="alert alert-danger" *ngIf="errorMsg">
+                    {{ errorMsg }}</div>
+            </div>
+
+            <div class="input">
+                <input ngModel #password="ngModel" name="password" type="password" class="form-control mb-2"
+                    placeholder="Password" required minlength="6">
+                <div class="alert alert-danger" *ngIf="password.touched && password.errors?.['required']">
+                    Password Is required</div>
+                <div class="alert alert-danger" *ngIf="password.touched && password.errors?.['minlength']">
+                    Password must be more than 6 charchters</div>
+            </div>
+
+
+            <div class="input">
+                <input ngModel #passwordConfirm="ngModel" name="passwordConfirm" type="password"
+                    class="form-control mb-2" placeholder="Confirm Password" required>
+                <div class="alert alert-danger" *ngIf="passwordConfirm.invalid && passwordConfirm.touched">
+                    passwordConfirm Is required</div>
+                <div class="alert alert-danger"
+                    *ngIf="passwordConfirm.value !== password.value && passwordConfirm.touched">
+                    confirm password donsnot match password</div>
+            </div>
+
+            <div class="input">
+                <input ngModel name="address" #address="ngModel" type="text" class="form-control mb-2"
+                    placeholder="Address" required>
+                <div class="alert alert-danger" *ngIf="address.invalid && address.touched">
+                    address Is required</div>
+            </div>
+            <button [disabled]="f.invalid ||passwordConfirm.value !== password.value" class="btn btn-primary">Create
+                Account</button>
+        </form>
+    </div>
+</div>

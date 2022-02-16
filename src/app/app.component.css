@@ -1,0 +1,8 @@
+:host ::ng-deep .card {
+    /* background-color: red; */
+}
+
+app-navbar{
+    width: 100%;
+    background-color: #f8f9fa;
+}
